@@ -4,8 +4,8 @@ The table of SDLC tasks defines the structured lifecycle for developing, impleme
 | -------- | ------------------------------------- | ------------ | ------ |
 | RS-TD001 | Collect requirements                  | Requirements | ✅      |
 | RS-TD002 | Identify risks                        | Requirements | ✅      |
-| RS-TD003 | Map risks to tests                    | Requirements |        |
-| DS-TD001 | Define main test paths                | Design       |        |
+| RS-TD003 | Map risks to tests                    | Requirements | ✅      |
+| DS-TD001 | Define main test paths                | Design       | ✅      |
 | DS-TD002 | Extract unit tests                    | Design       |        |
 | DS-TD003 | Extract integration tests             | Design       |        |
 | DS-TD004 | Extract E2E tests                     | Design       |        |
@@ -24,29 +24,29 @@ stateDiagram-v2
 
   
 
-state ⛳️requirements_stage {
+state ✅⛳️requirements_stage {
 
 ✅requirements_determined --> ✅⛳️requirements_stage_started: ⬇️require
 
 ✅⛳️requirements_stage_started --> ✅requirements_determined: ⚒️todo_collectRequirements🟢
 
-test_strategy_defined --> ✅risks_identified: ⬇️require
+✅test_strategy_defined --> ✅risks_identified: ⬇️require
 
-✅risks_identified --> test_strategy_defined: ⚒️todo_mapRisksToTests
+✅risks_identified --> ✅test_strategy_defined: ⚒️todo_mapRisksToTests🟢
 
 ✅risks_identified --> ✅requirements_determined: ⬇️require
 
 ✅requirements_determined --> ✅risks_identified: ⚒️todo_identifyRisks🟢
 
-🇫🇮requirements_stage_done --> test_strategy_defined: ⬇️require
+✅🇫🇮requirements_stage_done --> ✅test_strategy_defined: ⬇️require
 
-test_strategy_defined --> 🇫🇮requirements_stage_done: ⏩thenMustBe
+✅test_strategy_defined --> ✅🇫🇮requirements_stage_done: ⏩thenMustBe
 
 }
 
   
 
-design_stage --> ⛳️requirements_stage: require
+design_stage --> ✅⛳️requirements_stage: require
 
 state design_stage {
 
@@ -58,9 +58,9 @@ validations_determined --> 🇫🇮design_stage_done: ⏩thenMustBe
 
   
 
-🇫🇮design_stage_done --> architecture_defined: ⬇️require
+🇫🇮design_stage_done --> ✅architecture_defined: ⬇️require
 
-architecture_defined --> 🇫🇮design_stage_done: ⏩thenMustBe
+✅architecture_defined --> 🇫🇮design_stage_done: ⏩thenMustBe🟢
 
   
 
@@ -82,45 +82,45 @@ e2e_test_extracted --> validations_determined: ⏩thenMustBe
 
   
 
-unit_test_extracted --> parent_tests_table_elicited: ⬇️require
+unit_test_extracted --> ✅parent_tests_table_elicited: ⬇️require
 
-parent_tests_table_elicited --> unit_test_extracted: ⚒️todo_extractUnitTests
-
-  
-
-integration_test_extracted --> parent_tests_table_elicited: ⬇️require
-
-parent_tests_table_elicited --> integration_test_extracted: ⚒️todo_extractIntegrationTests
+✅parent_tests_table_elicited --> unit_test_extracted: ⚒️todo_extractUnitTests
 
   
 
-e2e_test_extracted --> parent_tests_table_elicited: ⬇️require
+integration_test_extracted --> ✅parent_tests_table_elicited: ⬇️require
 
-parent_tests_table_elicited --> e2e_test_extracted: ⚒️todo_extractE2ETests
-
-  
-
-test_seams_defined --> parent_tests_table_elicited: ⬇️require
-
-parent_tests_table_elicited --> test_seams_defined: ⏩thenMustBe
+✅parent_tests_table_elicited --> integration_test_extracted: ⚒️todo_extractIntegrationTests
 
   
 
-api_contracts_defined --> test_seams_defined: ⬇️require
+e2e_test_extracted --> ✅parent_tests_table_elicited: ⬇️require
 
-test_seams_defined --> api_contracts_defined: ⏩thenMustBe
-
-  
-
-architecture_defined --> api_contracts_defined: ⬇️require
-
-api_contracts_defined --> architecture_defined: ⏩thenMustBe
+✅parent_tests_table_elicited --> e2e_test_extracted: ⚒️todo_extractE2ETests
 
   
 
-parent_tests_table_elicited --> ⛳️design_stage_started: ⬇️require
+✅test_seams_defined --> ✅parent_tests_table_elicited: ⬇️require
 
-⛳️design_stage_started --> parent_tests_table_elicited: ⚒️todo_defineMainPaths
+✅parent_tests_table_elicited --> ✅test_seams_defined: ⏩thenMustBe🟢
+
+  
+
+✅api_contracts_defined --> ✅test_seams_defined: ⬇️require
+
+✅test_seams_defined --> ✅api_contracts_defined: ⏩thenMustBe🟢
+
+  
+
+✅architecture_defined --> ✅api_contracts_defined: ⬇️require
+
+✅api_contracts_defined --> ✅architecture_defined: ⏩thenMustBe🟢
+
+  
+
+✅parent_tests_table_elicited --> ✅⛳️design_stage_started: ⬇️require
+
+✅⛳️design_stage_started --> ✅parent_tests_table_elicited: ⚒️todo_defineMainPaths🟢
 
 }
 

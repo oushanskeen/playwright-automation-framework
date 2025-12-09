@@ -1,8 +1,8 @@
 [[#1. Requirements Analysis]]
 [[#2. Risk Identification]]
-[[#3. Test Design]] (tba)
-[[#4. Traceability & Coverage]] (tba)
-[[#5. MECE Assessment]] (tba)
+[[#3. Test Design]]
+[[#4. Traceability & Coverage]]
+[[#5. MECE Assessment]]
 
 ### 1. Requirements Analysis
 
@@ -33,3 +33,92 @@
 | RSK-04 | Account lockout mechanism not working or misfiring.   | Functional / Security Policy      |
 | RSK-05 | Expired password incorrectly accepted.                | Functional / Security Policy      |
 | RSK-06 | Unverified account bypasses verification check.       | Functional / Security Policy      |
+
+---
+### 3. Test Design
+
+**Principle:** Each risk is linked to one or more functional or non-functional tests to ensure coverage.
+#### 3.1 Functional Testing
+-  Black-box (End-to-End)
+    -  Positive scenarios
+    -  Negative scenarios
+    -  Edge cases
+- Grey-box (Integration,  Module interactions)
+    - Positive scenarios: normal flows,
+    - Negative scenarios: fault injection, rollback
+    - Edge cases
+- White-box (Unit)
+    - Positive scenarios
+    - Negative scenarios: exceptions, invalid inputs
+    - Edge cases: boundary conditions, nulls, off-by-one
+#### 3.2 Non-Functional Testing
+- **Performance:** Idempotency, throttling, eventual consistency
+- **Load & Concurrency:** Race conditions, stress, scalability limits
+- **Security:** Access control, injection attacks, vulnerability scanning
+- **Reliability & Maintainability (optional but recommended):** Fault tolerance, monitoring, logging coverage
+
+```gherkin
+Feature: Login API requirements matrix test
+
+	Scenario Outline: API scenario driven by test matrix
+	  Given requirement "<REQ-ID>"
+	  Given requirement risk "<RISK-ID>"
+	  Given the "<Test-ID>"
+	  Given the test "<Scenario Name>"
+	  Given the client sends "<Client Input>"
+	  When the API Gateway forwards the "<API Gateway>" request 
+	  And the Auth Service processes the "<Auth Service>"request 
+	  And the DB responds with "<DB Response>"
+	  And the Auth validation result is "<Auth Validation>"
+	  And the Token Service returns "<Token Service>" response
+	  Then the API response expected to be"<API Response>"
+	  And the client outcome expected to be"<Client Outcome>"
+```
+
+
+_This table serves as a single source of truth and can be vertically or column-wise separated according to test focus (E2E, integration, unit, functional, or non-functional) so each layer or type consumes only the relevant parts. Run this Scenario Outline in your Cucumber framework._
+
+
+| Req-ID | Risk-ID | Test ID | Scenario Name        | Client Input          | API Gateway | Auth Service    | DB Response               | Auth Validation   | Token Service | API Response      | Client Outcome          |
+| ------ | ------- | ------- | -------------------- | --------------------- | ----------- | --------------- | ------------------------- | ----------------- | ------------- | ----------------- | ----------------------- |
+| REQ-01 | RSK-01  | FT01    | Successful Login     | login=x, pass=y       | POST /login | receives creds  | returns user record       | creds valid       | token issued  | 200 OK + token    | token received          |
+| REQ-01 | RSK-02  | FT02    | Invalid Credentials  | login=x, pass=wrong   | POST /login | receives creds  | returns user record       | creds invalid     | N/A           | 401 Unauthorized  | login failed            |
+| REQ-01 | RSK-03  | FT03    | Missing Credentials  | login=null, pass=null | POST /login | invalid request | N/A                       | validation failed | N/A           | 400 Bad Request   | input error             |
+| REQ-02 | RSK-04  | FT04    | User Locked          | login=x, pass=y       | POST /login | receives creds  | returns locked user       | user locked       | N/A           | 423/403 Forbidden | account locked          |
+| REQ-03 | RSK-05  | FT05    | Password Expired     | login=x, pass=oldpass | POST /login | receives creds  | returns user record       | password expired  | N/A           | 403 Forbidden     | password reset required |
+| REQ-03 | RSK-06  | FT06    | Account Not Verified | login=x, pass=y       | POST /login | receives creds  | returns unverified status | unverified        | N/A           | 403 Forbidden     | verification required   |
+
+
+---
+### **4. Traceability & Coverage**
+- Map **each test to its corresponding risk and requirement**
+- Track coverage for functional, integration, and non-functional areas
+- Prioritize testing for:
+    - Critical user journeys
+    - High-risk modules
+    - SLA or regulatory-driven components
+
+| REQ \ RSK | RSK-01 | RSK-02 | RSK-03 | RSK-04 | RSK-05 | RSK-06 |
+| --------- | ------ | ------ | ------ | ------ | ------ | ------ |
+| REQ-01    | X      | X      | X      |        |        |        |
+| REQ-02    |        |        |        | X      |        |        |
+| REQ-03    |        |        |        |        | X      | X      |
+
+| RSK \ Test | FT01 | FT02 | FT03 | FT04 | FT05 | FT06 |
+| ---------- | ---- | ---- | ---- | ---- | ---- | ---- |
+| RSK-01     | X    |      |      |      |      |      |
+| RSK-02     |      | X    |      |      |      |      |
+| RSK-03     |      |      | X    |      |      |      |
+| RSK-04     |      |      |      | X    |      |      |
+| RSK-05     |      |      |      |      | X    |      |
+| RSK-06     |      |      |      |      |      | X    |
+
+### 5. MECE Assessment
+
+| Section                 | ME  | CE  | Notes                                                           |
+| ----------------------- | --- | --- | --------------------------------------------------------------- |
+| Requirements            | ✅   | ⚠️  | Could include logging, MFA, error messaging                     |
+| Risk Identification     | ✅   | ⚠️  | Could include operational, concurrency, and cross-cutting risks |
+| Test Design             | ✅   | ⚠️  | Edge-case and extreme-load tests could be added                 |
+| Traceability & Coverage | ✅   | ✅   | -                                                               |
+| **Overall MECE**        | ✅   | ⚠️  | Minor gaps in exhaustiveness                                    |
