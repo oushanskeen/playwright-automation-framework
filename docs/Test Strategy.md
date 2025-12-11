@@ -63,31 +63,36 @@ Feature: Login API requirements matrix test
 	Scenario Outline: API scenario driven by test matrix
 	  Given requirement "<REQ-ID>"
 	  Given requirement risk "<RISK-ID>"
-	  Given the "<Test-ID>"
+	  Given the "<TEST-ID>"
 	  Given the test "<Scenario Name>"
-	  Given the client sends "<Client Input>"
-	  When the API Gateway forwards the "<API Gateway>" request 
-	  And the Auth Service processes the "<Auth Service>"request 
-	  And the DB responds with "<DB Response>"
-	  And the Auth validation result is "<Auth Validation>"
-	  And the Token Service returns "<Token Service>" response
-	  Then the API response expected to be"<API Response>"
-	  And the client outcome expected to be"<Client Outcome>"
+	  Given the UI sends "<UI Input>"
+	  Then the client sends "<Client Input>"
+	  When the API Gateway forwards the "<API Input>" request 
+	  And the Auth Service processes the "<Auth Service Input>"request 
+	  And the DB receives "<DB Input>"
+	  And the DB responds with "<DB Output>"
+	  And the Auth validation result is "<Auth Service Output>"
+	  And the Token Service receives "<Token Service Input>" response
+	  And the Token Service returns "<Token Service Output>" response
+	  Then the API response expected to be"<API Output>"
+	  And the client outcome expected to be"<Client Output>"
+	  And the UI receives "<UI Output>"
 ```
 
 
 _This table serves as a single source of truth and can be vertically or column-wise separated according to test focus (E2E, integration, unit, functional, or non-functional) so each layer or type consumes only the relevant parts. Run this Scenario Outline in your Cucumber framework._
 
+\<masterTable>
 
-| Req-ID | Risk-ID | Test ID | Scenario Name        | Client Input          | API Gateway | Auth Service    | DB Response               | Auth Validation   | Token Service | API Response      | Client Outcome          |
-| ------ | ------- | ------- | -------------------- | --------------------- | ----------- | --------------- | ------------------------- | ----------------- | ------------- | ----------------- | ----------------------- |
-| REQ-01 | RSK-01  | FT01    | Successful Login     | login=x, pass=y       | POST /login | receives creds  | returns user record       | creds valid       | token issued  | 200 OK + token    | token received          |
-| REQ-01 | RSK-02  | FT02    | Invalid Credentials  | login=x, pass=wrong   | POST /login | receives creds  | returns user record       | creds invalid     | N/A           | 401 Unauthorized  | login failed            |
-| REQ-01 | RSK-03  | FT03    | Missing Credentials  | login=null, pass=null | POST /login | invalid request | N/A                       | validation failed | N/A           | 400 Bad Request   | input error             |
-| REQ-02 | RSK-04  | FT04    | User Locked          | login=x, pass=y       | POST /login | receives creds  | returns locked user       | user locked       | N/A           | 423/403 Forbidden | account locked          |
-| REQ-03 | RSK-05  | FT05    | Password Expired     | login=x, pass=oldpass | POST /login | receives creds  | returns user record       | password expired  | N/A           | 403 Forbidden     | password reset required |
-| REQ-03 | RSK-06  | FT06    | Account Not Verified | login=x, pass=y       | POST /login | receives creds  | returns unverified status | unverified        | N/A           | 403 Forbidden     | verification required   |
-
+| REQ-ID | RISK-ID | TEST-ID | Scenario Name        | UI Input                 | Client Input             | API Input                           | Auth Service Input | DB Input                               | DB Output                 | Auth Service Output | Token Service Input | Token Service Output | API Output        | Client Output           | UI Output                                  |
+| ------ | ------- | ------- | -------------------- | ------------------------ | ------------------------ | ----------------------------------- | ------------------ | -------------------------------------- | ------------------------- | ------------------- | ------------------- | -------------------- | ----------------- | ----------------------- | ------------------------------------------ |
+| REQ-01 | RSK-01  | FT01    | Successful Login     | login=x&pass=y           | login=x&pass=y           | POST /login?login=x&pass=y          | receives creds     | user<br>valid<br>creds                 | returns user record       | creds valid         | token request       | token issued         | 200 OK + token    | token received          | “Ok”                                       |
+| REQ-01 | RSK-02  | FT02    | Invalid Credentials  | login=x&pass=z           | login=x&pass=z           | POST /login?login=x&pass=z          | receives creds     | user<br>valid<br>creds                 | returns user record       | creds invalid       | N/A                 | N/A                  | 401 Unauthorized  | login failed            | “Invalid username or password”             |
+| REQ-01 | RSK-03  | FT03    | Missing Credentials  | login=null&pass=null     | login=null&pass=null     | POST /login?login=null&pass=null    | invalid request    | user invald creds                      | N/A                       | validation failed   | N/A                 | N/A                  | 400 Bad Request   | input error             | “Username and password required”           |
+| REQ-02 | RSK-04  | FT04    | User Locked          | login=xLocked&pass=y     | login=xLocked&pass=y     | POST /login?login=xLocked&pass=y    | receives creds     | user<br>valid<br>creds                 | returns locked user       | user locked         | N/A                 | N/A                  | 423/403 Forbidden | account locked          | “Your account is locked. Contact support.” |
+| REQ-03 | RSK-05  | FT05    | Password Expired     | login=x&pass=oldpass     | login=x&pass=oldpass     | POST /login?login=x&pass=oldpass    | receives creds     | user<br>creds<br>with expired password | returns user record       | password expired    | N/A                 | N/A                  | 403 Forbidden     | password reset required | “Reset Password”                           |
+| REQ-03 | RSK-06  | FT06    | Account Not Verified | login=xUnverified&pass=y | login=xUnverified&pass=y | POST /login?ogin=xUnverified&pass=y | receives creds     | user<br>valid<br>creds                 | returns unverified status | unverified          | N/A                 | N/A                  | 403 Forbidden     | verification required   | “Please verify your email to continue.”    |
+\<\masterTable>
 
 ---
 ### **4. Traceability & Coverage**

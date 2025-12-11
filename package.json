@@ -1,0 +1,30 @@
+{
+  "name": "playwright-automation-framework",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {
+    "cucumber": "cucumber-js --strict --require 'test/steps/**/*.js' 'test/features/**/*.feature'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oushanskeen/playwright-automation-framework.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/oushanskeen/playwright-automation-framework/issues"
+  },
+  "homepage": "https://github.com/oushanskeen/playwright-automation-framework#readme",
+  "devDependencies": {
+    "@cucumber/cucumber": "^12.3.0"
+  },
+  "dependencies": {
+  }
+}
