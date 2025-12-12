@@ -17,7 +17,10 @@ Given('the test name {string}', async function (this: DBWorld, testName: string)
 });
 When('the unit input is {string}', async function (this: DBWorld, testInput: string) {
   console.log("[DB.steps.js/Given] the unit input is ", testInput)
+  await this.DBService.get(testInput)
 });
 Then('the unit output is {string}', async function (this: DBWorld, expectedOutput: string) {
   console.log("[DB.steps.js/Then] Expected output:", expectedOutput);
+  const actualOutput = await this.DBService.getLatestResponse()
+  assert.strictEqual(actualOutput, normalize(expectedOutput));
 });

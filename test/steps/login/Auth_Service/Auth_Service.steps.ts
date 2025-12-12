@@ -17,7 +17,10 @@ Given('the test name {string}', async function (this: AuthServiceWorld, testName
 });
 When('the unit input is {string}', async function (this: AuthServiceWorld, testInput: string) {
   console.log("[AuthService.steps.js/Given] the unit input is ", testInput)
+  await this.AuthService.post(testInput)
 });
 Then('the unit output is {string}', async function (this: AuthServiceWorld, expectedOutput: string) {
   console.log("[AuthService.steps.js/Then] Expected output:", expectedOutput);
+  const actualOutput = await this.AuthService.getLatestResponse()
+  assert.strictEqual(actualOutput, normalize(expectedOutput));
 });

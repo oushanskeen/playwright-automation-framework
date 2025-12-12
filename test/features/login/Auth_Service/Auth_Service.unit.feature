@@ -12,9 +12,9 @@
 
         Examples:
            | REQ-ID | RISK-ID | TEST-ID | Scenario Name | Input | Output|
-           | REQ-01 | RSK-01 | FT01 | Successful Login | receives creds | creds valid|
-           | REQ-01 | RSK-02 | FT02 | Invalid Credentials | receives creds | creds invalid|
+           | REQ-01 | RSK-01 | FT01 | Successful Login | valid creds | creds valid|
+           | REQ-01 | RSK-02 | FT02 | Invalid Credentials | invalid creds | creds invalid|
            | REQ-01 | RSK-03 | FT03 | Missing Credentials | invalid request | validation failed|
-           | REQ-02 | RSK-04 | FT04 | User Locked | receives creds | user locked|
-           | REQ-03 | RSK-05 | FT05 | Password Expired | receives creds | password expired|
-           | REQ-03 | RSK-06 | FT06 | Account Not Verified | receives creds | unverified |
+           | REQ-02 | RSK-04 | FT04 | User Locked | locked user creds | user locked|
+           | REQ-03 | RSK-05 | FT05 | Password Expired | expired password creds | password expired|
+           | REQ-03 | RSK-06 | FT06 | Account Not Verified | unverified creds | unverified |

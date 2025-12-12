@@ -17,7 +17,10 @@ Given('the test name {string}', async function (this: TokenServiceWorld, testNam
 });
 When('the unit input is {string}', async function (this: TokenServiceWorld, testInput: string) {
   console.log("[TokenService.steps.js/Given] the unit input is ", testInput)
+  await this.TokenService.post(testInput)
 });
 Then('the unit output is {string}', async function (this: TokenServiceWorld, expectedOutput: string) {
   console.log("[TokenService.steps.js/Then] Expected output:", expectedOutput);
+  const actualOutput = await this.TokenService.getLatestResponse()
+  assert.strictEqual(actualOutput, normalize(expectedOutput));
 });

@@ -17,7 +17,10 @@ Given('the test name {string}', async function (this: APIWorld, testName: string
 });
 When('the unit input is {string}', async function (this: APIWorld, testInput: string) {
   console.log("[API.steps.js/Given] the unit input is ", testInput)
+  await this.LoginAPI.post(testInput)
 });
 Then('the unit output is {string}', async function (this: APIWorld, expectedOutput: string) {
   console.log("[API.steps.js/Then] Expected output:", expectedOutput);
+  const actualOutput = await this.LoginAPI.getLatestResponse()
+  assert.strictEqual(actualOutput, normalize(expectedOutput));
 });
