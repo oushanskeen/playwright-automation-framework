@@ -5,8 +5,8 @@
 MODULES=("UI" "API" "Auth_Service" "DB" "Token_Service")
 
 # Base paths
-FEATURES_BASE="test/features/login"
-STEPS_BASE="test/steps/login"
+FEATURES_BASE="dist/test/features/login"
+STEPS_BASE="dist/test/steps/login"
 
 # Loop over modules and run Cucumber for each
 for MODULE in "${MODULES[@]}"; do

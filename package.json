@@ -8,7 +8,7 @@
     "test": "tests"
   },
   "scripts": {
-    "cucumber": "cucumber-js --strict --require 'test/steps/**/*.js' 'test/features/**/*.feature'"
+    "cucumber": "cucumber-js --require-module ts-node/register"
   },
   "repository": {
     "type": "git",
@@ -23,8 +23,10 @@
   },
   "homepage": "https://github.com/oushanskeen/playwright-automation-framework#readme",
   "devDependencies": {
-    "@cucumber/cucumber": "^12.3.0"
-  },
-  "dependencies": {
+    "@cucumber/cucumber": "^12.3.0",
+    "@types/node": "^25.0.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
   }
 }
+

@@ -1,2 +1,7 @@
 /.obsidian
 /node_modules/
+
+# Playwright
+node_modules/
+/test-results/
+/dist/
