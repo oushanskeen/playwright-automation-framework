@@ -6,7 +6,7 @@ The table of SDLC tasks defines the structured lifecycle for developing, impleme
 | RS-TD002 | Identify risks                                                                                                                          | Requirements | ✅      |     |
 | RS-TD003 | Map risks to tests                                                                                                                      | Requirements | ✅      |     |
 | DS-TD001 | Define main test paths                                                                                                                  | Design       | ✅      |     |
-| DS-TD002 | Extract unit tests:<br>  ? 1 Generate feature descriptions<br>  ? 2 Add mocked services calls<br>  ? 3 Add mocked services to the world | Design       |        |     |
+| DS-TD002 | Extract unit tests:<br>  ✅ 1 Generate feature descriptions<br>  ? 2 Add mocked services calls<br>  ? 3 Add mocked services to the world | Design       |        |     |
 | DS-TD003 | Extract integration tests                                                                                                               | Design       |        |     |
 | DS-TD004 | Extract E2E tests                                                                                                                       | Design       |        |     |
 | DV-TD001 | Implement unit code                                                                                                                     | Development  |        |     |

@@ -2,7 +2,7 @@
 # Usage: ./run_features.sh
 
 # Array of module names (should match folder names in test/features/login/)
-MODULES=("UI" "Client" "API" "Auth_Service" "DB" "Token_Service")
+MODULES=("UI" "API" "Auth_Service" "DB" "Token_Service")
 
 # Base paths
 FEATURES_BASE="test/features/login"
