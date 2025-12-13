@@ -1,21 +1,21 @@
 The table of SDLC tasks defines the structured lifecycle for developing, implementing, and validating an automation framework or software system. It organizes tasks by **stage**, ensuring traceability from requirements through deployment and validation.
 
-| ID       | SDLC Task                                                                                                                                    | Stage        | Status |
-| -------- | -------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ------ |
-| RS-TD001 | Collect requirements                                                                                                                         | Requirements | ✅      |
-| RS-TD002 | Identify risks                                                                                                                               | Requirements | ✅      |
-| RS-TD003 | Map risks to tests                                                                                                                           | Requirements | ✅      |
-| DS-TD001 | Define main test paths                                                                                                                       | Design       | ✅      |
-| DS-TD002 | ✅  Extract unit tests:<br>  ✅ 1 Generate feature descriptions<br>  ✅  2 Add mocked services calls<br>  ✅  3 Add mocked services to the world | Design       | ✅      |
-| DS-TD003 | Extract integration tests                                                                                                                    | Design       |        |
-| DS-TD004 | Extract E2E tests                                                                                                                            | Design       |        |
-| DV-TD001 | Implement unit code                                                                                                                          | Development  |        |
-| DV-TD002 | Implement test tagging & retry                                                                                                               | Development  |        |
-| DV-TD003 | Implement system & parallel execution                                                                                                        | Development  |        |
-| DP-TD001 | Push candidate code                                                                                                                          | Deployment   |        |
-| VS-TD001 | Setup ELK                                                                                                                                    | Validation   |        |
-| VS-TD002 | Provide Test Artefacts                                                                                                                       | Validation   |        |
-| VS-TD003 | Setup reporter & Allure                                                                                                                      | Validation   |        |
+| ID       | SDLC Task                             | Stage        | Status |
+| -------- | ------------------------------------- | ------------ | ------ |
+| RS-TD001 | Collect requirements                  | Requirements | ✅      |
+| RS-TD002 | Identify risks                        | Requirements | ✅      |
+| RS-TD003 | Map risks to tests                    | Requirements | ✅      |
+| DS-TD001 | Define main test paths                | Design       | ✅      |
+| DS-TD002 | Extract unit tests                    | Design       | ✅      |
+| DS-TD003 | Extract integration tests             | Design       | ✅      |
+| DS-TD004 | Extract E2E tests                     | Design       |        |
+| DV-TD001 | Implement unit code                   | Development  |        |
+| DV-TD002 | Implement test tagging & retry        | Development  |        |
+| DV-TD003 | Implement system & parallel execution | Development  |        |
+| DP-TD001 | Push candidate code                   | Deployment   |        |
+| VS-TD001 | Setup ELK                             | Validation   |        |
+| VS-TD002 | Provide Test Artefacts                | Validation   |        |
+| VS-TD003 | Setup reporter & Allure               | Validation   |        |
 The workflow visualizes task dependencies and execution sequence across SDLC stages:
 
 ```mermaid
@@ -58,9 +58,9 @@ validations_determined --> 🇫🇮design_stage_done: ⏩thenMustBe
 
   
 
-🇫🇮design_stage_done --> architecture_defined: ⬇️require
+🇫🇮design_stage_done --> ✅architecture_defined: ⬇️require
 
-architecture_defined --> 🇫🇮design_stage_done: ⏩thenMustBe
+✅architecture_defined --> 🇫🇮design_stage_done: ⏩thenMustBe
 
   
 
@@ -70,9 +70,9 @@ validations_determined --> ✅unit_test_extracted: ⬇️require
 
   
 
-validations_determined --> integration_test_extracted: ⬇️require
+validations_determined --> ✅integration_test_extracted: ⬇️require
 
-integration_test_extracted --> validations_determined: ⏩thenMustBe
+✅integration_test_extracted --> validations_determined: ⏩thenMustBe
 
   
 
@@ -88,9 +88,9 @@ e2e_test_extracted --> validations_determined: ⏩thenMustBe
 
   
 
-integration_test_extracted --> ✅parent_tests_table_elicited: ⬇️require
+✅integration_test_extracted --> ✅parent_tests_table_elicited: ⬇️require
 
-✅parent_tests_table_elicited --> integration_test_extracted: ⚒️todo_extractIntegrationTests
+✅parent_tests_table_elicited --> ✅integration_test_extracted: ⚒️todo_extractIntegrationTests🟢
 
   
 
@@ -106,15 +106,15 @@ e2e_test_extracted --> ✅parent_tests_table_elicited: ⬇️require
 
   
 
-api_contracts_defined --> ✅test_seams_defined: ⬇️require
+✅api_contracts_defined --> ✅test_seams_defined: ⬇️require
 
-✅test_seams_defined --> api_contracts_defined: ⏩thenMustBe
+✅test_seams_defined --> ✅api_contracts_defined: ⏩thenMustBe🟢
 
   
 
-architecture_defined --> api_contracts_defined: ⬇️require
+✅architecture_defined --> ✅api_contracts_defined: ⬇️require
 
-api_contracts_defined --> architecture_defined: ⏩thenMustBe
+✅api_contracts_defined --> ✅architecture_defined: ⏩thenMustBe🟢
 
   
 
