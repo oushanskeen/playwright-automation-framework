@@ -8,7 +8,7 @@ The table of SDLC tasks defines the structured lifecycle for developing, impleme
 | DS-TD001 | Define main test paths                | Design       | ✅      |
 | DS-TD002 | Extract unit tests                    | Design       | ✅      |
 | DS-TD003 | Extract integration tests             | Design       | ✅      |
-| DS-TD004 | Extract E2E tests                     | Design       |        |
+| DS-TD004 | Extract E2E tests                     | Design       | ✅      |
 | DV-TD001 | Implement unit code                   | Development  |        |
 | DV-TD002 | Implement test tagging & retry        | Development  |        |
 | DV-TD003 | Implement system & parallel execution | Development  |        |
@@ -46,39 +46,39 @@ state ✅⛳️requirements_stage {
 
   
 
-design_stage --> ✅⛳️requirements_stage: require
+✅design_stage --> ✅⛳️requirements_stage: require
 
-state design_stage {
-
-  
-
-🇫🇮design_stage_done --> validations_determined: ⬇️require
-
-validations_determined --> 🇫🇮design_stage_done: ⏩thenMustBe
+state ✅design_stage {
 
   
 
-🇫🇮design_stage_done --> ✅architecture_defined: ⬇️require
+✅🇫🇮design_stage_done --> ✅validations_determined: ⬇️require
 
-✅architecture_defined --> 🇫🇮design_stage_done: ⏩thenMustBe
-
-  
-
-validations_determined --> ✅unit_test_extracted: ⬇️require
-
-✅unit_test_extracted --> validations_determined: ⏩thenMustBe🟢
+✅validations_determined --> ✅🇫🇮design_stage_done: ⏩thenMustBe🟢
 
   
 
-validations_determined --> ✅integration_test_extracted: ⬇️require
+✅🇫🇮design_stage_done --> ✅architecture_defined: ⬇️require
 
-✅integration_test_extracted --> validations_determined: ⏩thenMustBe
+✅architecture_defined --> ✅🇫🇮design_stage_done: ⏩thenMustBe🟢
 
   
 
-validations_determined --> e2e_test_extracted: ⬇️require
+✅validations_determined --> ✅unit_test_extracted: ⬇️require
 
-e2e_test_extracted --> validations_determined: ⏩thenMustBe
+✅unit_test_extracted --> ✅validations_determined: ⏩thenMustBe🟢
+
+  
+
+✅validations_determined --> ✅integration_test_extracted: ⬇️require
+
+✅integration_test_extracted --> ✅validations_determined: ⏩thenMustBe🟢
+
+  
+
+✅validations_determined --> ✅e2e_test_extracted: ⬇️require
+
+✅e2e_test_extracted --> ✅validations_determined: ⏩thenMustBe🟢
 
   
 
@@ -94,9 +94,9 @@ e2e_test_extracted --> validations_determined: ⏩thenMustBe
 
   
 
-e2e_test_extracted --> ✅parent_tests_table_elicited: ⬇️require
+✅e2e_test_extracted --> ✅parent_tests_table_elicited: ⬇️require
 
-✅parent_tests_table_elicited --> e2e_test_extracted: ⚒️todo_extractE2ETests
+✅parent_tests_table_elicited --> ✅e2e_test_extracted: ⚒️todo_extractE2ETests🟢
 
   
 
@@ -126,7 +126,7 @@ e2e_test_extracted --> ✅parent_tests_table_elicited: ⬇️require
 
   
 
-development_stage --> design_stage: require
+development_stage --> ✅design_stage: require
 
 state development_stage{
 
