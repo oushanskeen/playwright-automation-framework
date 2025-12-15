@@ -1,6 +1,9 @@
 #!/bin/bash
 # Usage: ./run_features.sh
 
+# single test command (e.g. DB)):
+# npx cucumber-js ./test/features/login/DB/**/*.feature   --require dist/test/steps/login/DB/*.steps.js   --import dist/test/steps/login/DB/**/*.js
+
 # Array of module names (should match folder names in test/features/login/)
 MODULES=("UI" "API" "Auth_Service" "DB" "Token_Service")
 

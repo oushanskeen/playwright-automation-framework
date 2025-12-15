@@ -7,7 +7,6 @@ const readTestStrategyDoc = async () => {
 
     try {
         const content = await fs.readFile(docPath, 'utf8');
-        console.log(content); // entire file as string
         return content
     } catch (err) {
         console.error('Error reading file:', err);
@@ -85,7 +84,7 @@ const gherkinTest = (testName) =>
       Given the test id "<TEST-ID>"
       Given the test name "<Scenario Name>"
       When the unit input is "<Input>"
-        Then the unit output is "<Output>"
+      Then the unit output is "<Output>"
 
         Examples:
 `

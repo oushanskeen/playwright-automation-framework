@@ -8,7 +8,7 @@
       Given the test id "<TEST-ID>"
       Given the test name "<Scenario Name>"
       When the unit input is "<Input>"
-        Then the unit output is "<Output>"
+      Then the unit output is "<Output>"
 
         Examples:
            | REQ-ID | RISK-ID | TEST-ID | Scenario Name | Input | Output|
