@@ -1,1 +1,2 @@
-# playwright-automation-framework
+This framework makes an attempt to treat *qualities as explicit contracts*, not as a byproduct of passing tests. Instead of defining quality as coverage or test pass rates, it focuses on preserving clearly defined system properties over time through invariants, traceability, and enforcement across the SDLC. Tests, metrics, and monitoring are implementation details used to enforce those qualities. The framework provides a structured model, domain slicing, and a reference implementation, while allowing tooling and enforcement to evolve incrementally.
+→ **Read the full specification and rationale:** [`docs/Index.md`](docs/Index.md)

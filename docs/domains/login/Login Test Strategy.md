@@ -4,7 +4,7 @@
 [[#4. Traceability & Coverage]]
 [[#5. MECE Assessment]]
 
-### 1. Requirements Analysis
+### 1. Requirements Analysis:
 
 - **Diagram** system components and interactions to identify:
     - Module dependencies
@@ -23,7 +23,7 @@
 
 - **Module-level risks (internal):** Logic failures, exceptions, edge cases,  module-specific risks.
 - **Interface-level risks (connections):** API mismatches, data propagation errors.
-- **Business/Stakeholder impact risks:** Customer-facing critical paths.
+- **Business/Stakeholder impact risks:** Customer-facing critical paths .
 
 | RSK-ID | Description                                           | Risk Scope                        |
 | ------ | ----------------------------------------------------- | --------------------------------- |
@@ -97,6 +97,7 @@ _This table serves as a single source of truth and can be vertically or column-w
 
 ---
 ### **4. Traceability & Coverage**
+
 - Map **each test to its corresponding risk and requirement**
 - Track coverage for functional, integration, and non-functional areas
 - Prioritize testing for:

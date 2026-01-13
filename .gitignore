@@ -1,4 +1,4 @@
-/.obsidian
+# /.obsidian
 /node_modules/
 
 # Playwright
@@ -11,3 +11,7 @@ node_modules/
 /blob-report/
 /playwright/.cache/
 /playwright/.auth/
+
+# moon
+.moon/cache
+.moon/docker
