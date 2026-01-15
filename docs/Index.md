@@ -1,8 +1,39 @@
-# 1. Abstract: TL;DR
+
+> [!NOTE] Document Legend
+>
+This document contains three types of content:
+>
+>- #concept - Defines intent, philosophy, and mental models
+>- #normative - Defines mandatory rules and guarantees
+>- #procedural - Describes how the framework is applied in practice
+>
+Readers interested in *using* the framework should focus on #procedural  sections.
+## Contents
+
+[[#PART I — CONCEPTS]]
+[[#1. Abstract TL;DR concept]]
+[[#2. Motivation Why it must be built? concept]]
+[[#3. Spec What must be built? normative]]
+[[#4. Rationale Why this approach? concept]]
+[[#5. Backwards Compatibility How does it change ? normative]]
+
+[[#PART II — APPLYING THE FRAMEWORK]]
+[[#6. Implementation How it was built ? procedural]]
+[[#7. Risks/Dependencies What can go wrong? concept]]
+[[#8. Scope In/Out What's in/out? normative]]
+[[#9. Metrics How the success is measured ? normative]]
+
+---
+
+# PART I — CONCEPTS 
+This part defines the **contract, preserved qualities, and governance rules**.
+It specifies **what must always be true**, independent of implementation.
+
+# 1. Abstract: TL;DR #concept
 
 This framework is designed to preserve defined system qualities over time by enforcing traceability and invariants, rather than by enumerating or executing test cases.
 
-# 2. Motivation: Why it must be built?
+# 2. Motivation: Why it must be built? #concept
 
 ### Before
 - Quality is the ratio of green tests
@@ -12,15 +43,14 @@ This framework is designed to preserve defined system qualities over time by enf
 - Qualities are the contract
 - Tests are an implementation detail
 - Quality is the degree to which a system consistently preserves its explicitly defined properties under expected and specified conditions
+- Quality is preserved by:
+	- Clear contracts
+	- Constraints
+	- Invariants
+	- Feedback loops
+	- Enforcement mechanisms
 
-Quality is preserved by:
-- Clear contracts
-- Constraints
-- Invariants
-- Feedback loops
-- Enforcement mechanisms
-
-# 3. **Spec**: What must be built?
+# 3. Spec: What must be built? #normative
 
 ## Glossary
 
@@ -32,37 +62,37 @@ Quality is preserved by:
 
 ### Required
 
-**SR-RQ01**: Invariants (Tool Improvement Proposals as [[TIPs]]) — **REQUIRED**  
+**SR-RQ01**: Invariants (Tool Improvement Proposals as [[TIPs]]) - **REQUIRED**  
 _TBD: add explanation_
-**SR-RQ02**: Explicit [[ToDo Requirements Map]] — **REQUIRED**  
+**SR-RQ02**: Explicit [[ToDo Requirements Map]] - **REQUIRED**  
 _TBD: add explanation_
-**SR-RQ03**: Master Table — **REQUIRED**  
+**SR-RQ03**: Master Table - **REQUIRED**  
 _TBD: add explanation_
-**SR-RQ04**: Quality Model — **REQUIRED**  
+**SR-RQ04**: Quality Model - **REQUIRED**  
 _TBD: add explanation_
 
 ### Recommended
 
-**SR-RC01**: Domain Slices — **RECOMMENDED**  
+**SR-RC01**: Domain Slices - **RECOMMENDED**  
 Example: [[Login Domain]]  
 _TBD: add explanation_
-**SR-RC02**: Traceability — **RECOMMENDED**  
+**SR-RC02**: Traceability - **RECOMMENDED**  
 _TBD: add explanation_
-**SR-RC03**: Knowledge Base — **RECOMMENDED**  
+**SR-RC03**: Knowledge Base - **RECOMMENDED**  
 _TBD: add explanation_
-**SR-RC04**: File Structure Explained — **RECOMMENDED**  
+**SR-RC04**: File Structure Explained - **RECOMMENDED**  
 _TBD: add explanation_
 
 ### Optional
+ 
+**SR-OP01**: All Test Layers - **OPTIONAL**  
+_TBD: add explanation_
+**SR-OP02**: Cucumber Usage - **OPTIONAL**  
+_TBD: add explanation_
+**SR-OP03**: Sample Services - **OPTIONAL**  
+_TBD: add explanation_
 
-**SR-OP01**: All Test Layers — **OPTIONAL**  
-_TBA: supported layers and integration patterns_
-**SR-OP02**: Cucumber Usage — **OPTIONAL**  
-_TBA: usage conventions and mapping to qualities_
-**SR-OP03**: Sample Services — **OPTIONAL**  
-_TBA: reference implementations_
-
-## 4. **Rationale**: Why this approach?
+## 4. Rationale: Why this approach? #concept 
 
 | Approach                                | How Quality Is Addressed             | Strengths                                           | Limitations                                                                                 |
 | --------------------------------------- | ------------------------------------ | --------------------------------------------------- | ------------------------------------------------------------------------------------------- |
@@ -73,9 +103,28 @@ _TBA: reference implementations_
 | **One-Size-Fits-All Quality Model**     | Applies uniform constraints          | Consistency; simplicity                             | Ignores system intent;                                                                      |
 |                                         |                                      |                                                     |                                                                                             |
 
-## 5. **Backwards Compatibility**: Impact analysis
-_TBD: compatibility guarantees, migration rules, and versioning policy_
-## 6. **Implementation**: How it was built
+## 5. Backwards Compatibility: How does it change ? #normative
+The framework is governed by a **fixed ontology of nine Index parts**, as defined in the [[Tool Ontology Graph]] (and used here) and fully describe in [[Change Governance Model]]. These parts represent **conceptual levels**, not just document sections. Every change **must be expressed against one or more parts**, ensuring intent, guarantees, and enforcement remain aligned.
+### Nine Governance Levels
+1. **Abstract** - summary contract of intent
+2. **Motivation** - problem framing and justification
+3. **Spec** - normative requirements
+4. **Rationale** - comparative reasoning
+5. **Backwards Compatibility** - change constraints
+6. **Implementation** - concrete realization and lifecycles
+7. **Risks** - failure modes and mitigations
+8. **Scope** - boundaries and exclusions
+9. **Metrics** - validation and success signals
+    
+Changes propagate along **ontology edges**, so updating one part may require reviewing dependent parts (e.g., changing the Implementation triggers checks in Spec, Scope, Metrics, and Risks). Changes are classified as **Form-, Rule-, or Model-level** depending on their impact.
+This approach prevents drift, enforces dependency awareness, and makes quality **observable, enforceable, and maintainable**.
+
+> For full governance rules, examples, and classification guidance, see the [[Change Governance Model]]
+
+# PART II — APPLYING THE FRAMEWORK
+This part describes **how the framework is applied in practice**
+using a reference implementation and lifecycle description.
+## 6. Implementation: How it was built ? #procedural
 _(Current reference implementation; structure may evolve)_
 
 ```code
@@ -171,7 +220,7 @@ _(Current reference implementation; structure may evolve)_
 	│       └── trace.js
 	└── tsconfig.json
 ```
-
+> #TBD❓: add files and folders descriptions
 ### Lifecycle Coverage
 _TBA: lifecycle model and enforcement points_
 	
@@ -192,9 +241,9 @@ SDLC Tasks (ToDos) from [[ToDo Requirements Map]]  per Stage
 | DP-TD001 | Push candidate code                   | Deployment   |
 | VS-TD003 | Setup reporter & Allure               | Validation   |
 
-
-## 7. Risks/Dependencies: What can go wrong
+## 7. Risks/Dependencies: What can go wrong? #concept 
 _TBD: re-visit_
+_These are **current known risks** and should be revisited whenever Implementation changes_
 
 |Risk|Impact|Mitigation|
 |---|---|---|
@@ -203,7 +252,7 @@ _TBD: re-visit_
 |Allure CLI issues|Medium|Use Dockerized Allure action|
 |Demo app availability|Medium|Mirror sample HTML locally|
 
-## 8. Scope In/Out: Boundaries
+## 8. Scope In/Out: What's in/out? #normative 
 _TBD: re-visit_
 #### In:
 - Playwright initialization & configuration (AC001)
@@ -224,7 +273,7 @@ _TBD: re-visit_
 - Backward compatibility with older browsers
 - Web app development (using mock/demo app)
 - ELK or model-based testing (future extensions)
-## 9. Metrics: How the success is measured
+## 9. Metrics: How the success is measured ? #normative 
 
 Unified Traceability Matrix
 

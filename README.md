@@ -1,2 +1,9 @@
-This framework makes an attempt to treat *qualities as explicit contracts*, not as a byproduct of passing tests. Instead of defining quality as coverage or test pass rates, it focuses on preserving clearly defined system properties over time through invariants, traceability, and enforcement across the SDLC. Tests, metrics, and monitoring are implementation details used to enforce those qualities. The framework provides a structured model, domain slicing, and a reference implementation, while allowing tooling and enforcement to evolve incrementally.
-→ **Read the full specification and rationale:** [`docs/Index.md`](docs/Index.md)
+Hello!
+
+This framework - initially started as Playwright-focused but later evolving into something broader (and not yet split into a separate repository) - defines a **quality-preservation approach** that enforces explicit system properties through contracts, invariants, and traceability, rather than relying solely on tests. It provides both **conceptual guidance** and a **reference implementation**, covering lifecycle enforcement points from design to deployment.
+
+The goal is to ensure a system consistently preserves its defined qualities, while making quality **observable, enforceable, and maintainable** over time.
+
+> **Note:** For the best reading and navigation experience, the `docs/` directory is intended to be opened as an **Obsidian vault**, as the documentation relies on Obsidian-style links and structure.
+> 
+…if this sounds interesting, (clone and) read on [➡️](/docs/Index.md)
