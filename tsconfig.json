@@ -13,5 +13,5 @@
     "src",
     "src/domains/login/test",
     // "dist/src/utils"
-  ]
+  ],
 }

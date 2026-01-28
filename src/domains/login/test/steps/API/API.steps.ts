@@ -1,7 +1,6 @@
 import { Given, When, Then } from '@cucumber/cucumber';
-import assert from "assert";
-import { APIWorld } from "../API/world"
-import normalize from "../../../../src/utils/normalize";
+import { APIWorld } from "./world"
+import { expect } from '@playwright/test';
 
 Given('the requirement {string}', async function (this: APIWorld, req: string) {
   console.log("\n[API.steps.js/Given] the requirement ", req)
@@ -22,5 +21,5 @@ When('the unit input is {string}', async function (this: APIWorld, testInput: st
 Then('the unit output is {string}', async function (this: APIWorld, expectedOutput: string) {
   console.log("[API.steps.js/Then] Expected output:", expectedOutput);
   const actualOutput = await this.LoginAPI.getLatestResponse()
-  assert.strictEqual(actualOutput, normalize(expectedOutput));
+  expect(actualOutput).toBe(expectedOutput)
 });
