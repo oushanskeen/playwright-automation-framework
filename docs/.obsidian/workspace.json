@@ -8,35 +8,91 @@
         "type": "tabs",
         "children": [
           {
-            "id": "22b875d97b84abba",
+            "id": "956eba4082c76b80",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "TIPs/On Invariants/On Invariants Critical Thinking Map.pdf"
+              },
+              "icon": "lucide-file-text",
+              "title": "On Invariants Critical Thinking Map"
+            }
+          },
+          {
+            "id": "f47d39307aa8746e",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
                 "file": "Index.md",
                 "mode": "source",
-                "source": false
+                "source": false,
+                "backlinks": true,
+                "backlinkOpts": {
+                  "collapseAll": false,
+                  "extraContext": false,
+                  "sortOrder": "alphabetical",
+                  "showSearch": false,
+                  "searchQuery": "",
+                  "backlinkCollapsed": false,
+                  "unlinkedCollapsed": true
+                }
               },
               "icon": "lucide-file",
               "title": "Index"
             }
           },
           {
-            "id": "55db70d7415ba1c5",
+            "id": "5f962d84738a8955",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Index.md",
+                "file": "TIPs/TIPs.md",
                 "mode": "source",
-                "source": false
+                "source": false,
+                "backlinks": true,
+                "backlinkOpts": {
+                  "collapseAll": false,
+                  "extraContext": false,
+                  "sortOrder": "alphabetical",
+                  "showSearch": false,
+                  "searchQuery": "",
+                  "backlinkCollapsed": false,
+                  "unlinkedCollapsed": true
+                }
               },
               "icon": "lucide-file",
-              "title": "Index"
+              "title": "TIPs"
+            }
+          },
+          {
+            "id": "015f8c22efa0a9db",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "RFC-light Change Proposal.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": true,
+                "backlinkOpts": {
+                  "collapseAll": false,
+                  "extraContext": false,
+                  "sortOrder": "alphabetical",
+                  "showSearch": false,
+                  "searchQuery": "",
+                  "backlinkCollapsed": false,
+                  "unlinkedCollapsed": true
+                }
+              },
+              "icon": "lucide-file",
+              "title": "RFC-light Change Proposal"
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -68,7 +124,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "❓",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -93,7 +149,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 444.5
   },
   "right": {
     "id": "3cd012be1ddbc0fe",
@@ -198,17 +254,25 @@
       "bases:Create new base": false
     }
   },
-  "active": "55db70d7415ba1c5",
+  "active": "5f962d84738a8955",
   "lastOpenFiles": [
-    "domains/login/Login Test Strategy.md",
-    "domains/login/Login Domain.md",
+    "Map.canvas",
+    "TIPs/TIPs.md",
+    "TIPs/On Invariants/On Invariants Critical Thinking Map.pdf",
+    "RFC-light Change Proposal.md",
     "Index.md",
+    "Untitled.md",
+    "Untitled",
     "ToDo Requirements Map.md",
+    "domains/login/Login Domain.md",
+    "TIPs/On Invariants/0001 TIP On Invariants.md",
+    "Tool Ontology Graph.md",
+    "Change Governance Model.md",
+    "**Tool Ontology Graph**.md",
+    "domains/login/Login Test Strategy.md",
     "domains/login/Login Specification.md",
     "TIPs/On Invariants/on invariants map.xmind",
     "TIPs/On Invariants/on invariants map",
-    "TIPs/On Invariants",
-    "TIPs/TIPs.md",
-    "TIPs/On Invariants/0001 TIP On Invariants.md"
+    "TIPs/On Invariants"
   ]
 }

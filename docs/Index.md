@@ -8,6 +8,7 @@ This document contains three types of content:
 >- #procedural - Describes how the framework is applied in practice
 >
 Readers interested in *using* the framework should focus on #procedural  sections.
+
 ## Contents
 
 [[#PART I — CONCEPTS]]
@@ -38,7 +39,6 @@ This framework is designed to preserve defined system qualities over time by enf
 ### Before
 - Quality is the ratio of green tests
 - Quality is subjective judgments of excellence
-    
 ### After
 - Qualities are the contract
 - Tests are an implementation detail
@@ -62,9 +62,9 @@ This framework is designed to preserve defined system qualities over time by enf
 
 ### Required
 
-**SR-RQ01**: Invariants (Tool Improvement Proposals as [[TIPs]]) - **REQUIRED**  
+**SR-RQ01**: Invariants (Tool Improvement Proposals as [TIPs](TIPs.md)) - **REQUIRED**  
 _TBD: add explanation_
-**SR-RQ02**: Explicit [[ToDo Requirements Map]] - **REQUIRED**  
+**SR-RQ02**: Explicit [ToDo Requirements Map](ToDo%20Requirements%20Map.md) - **REQUIRED**  
 _TBD: add explanation_
 **SR-RQ03**: Master Table - **REQUIRED**  
 _TBD: add explanation_
@@ -74,7 +74,7 @@ _TBD: add explanation_
 ### Recommended
 
 **SR-RC01**: Domain Slices - **RECOMMENDED**  
-Example: [[Login Domain]]  
+Example: [Login Domain](Login%20Domain.md)  
 _TBD: add explanation_
 **SR-RC02**: Traceability - **RECOMMENDED**  
 _TBD: add explanation_
@@ -104,7 +104,7 @@ _TBD: add explanation_
 |                                         |                                      |                                                     |                                                                                             |
 
 ## 5. Backwards Compatibility: How does it change ? #normative
-The framework is governed by a **fixed ontology of nine Index parts**, as defined in the [[Tool Ontology Graph]] (and used here) and fully describe in [[Change Governance Model]]. These parts represent **conceptual levels**, not just document sections. Every change **must be expressed against one or more parts**, ensuring intent, guarantees, and enforcement remain aligned.
+The framework is governed by a **fixed ontology of nine Index parts**, as defined in the [Tool Ontology Graph](Tool%20Ontology%20Graph.md) (and used here) and fully describe in [Change Governance Model](Change%20Governance%20Model.md). These parts represent **conceptual levels**, not just document sections. Every change **must be expressed against one or more parts**, ensuring intent, guarantees, and enforcement remain aligned.
 ### Nine Governance Levels
 1. **Abstract** - summary contract of intent
 2. **Motivation** - problem framing and justification
@@ -119,7 +119,9 @@ The framework is governed by a **fixed ontology of nine Index parts**, as define
 Changes propagate along **ontology edges**, so updating one part may require reviewing dependent parts (e.g., changing the Implementation triggers checks in Spec, Scope, Metrics, and Risks). Changes are classified as **Form-, Rule-, or Model-level** depending on their impact.
 This approach prevents drift, enforces dependency awareness, and makes quality **observable, enforceable, and maintainable**.
 
-> For full governance rules, examples, and classification guidance, see the [[Change Governance Model]]
+> For full governance rules, examples, and classification guidance, see the [Change Governance Model](Change%20Governance%20Model.md)
+
+#TBA❓ Add a point about DECISION MEMORY
 
 # PART II — APPLYING THE FRAMEWORK
 This part describes **how the framework is applied in practice**
@@ -221,10 +223,10 @@ _(Current reference implementation; structure may evolve)_
 	└── tsconfig.json
 ```
 > #TBD❓: add files and folders descriptions
-### Lifecycle Coverage
-_TBA: lifecycle model and enforcement points_
+### Lifecycles
+> #TBA❓ : lifecycles
 	
-SDLC Tasks (ToDos) from [[ToDo Requirements Map]]  per Stage
+SDLC Tasks (ToDos) from [ToDo Requirements Map](ToDo%20Requirements%20Map.md)  per Stage
 
 | ID       | SDLC Task                             | Stage        |
 | -------- | ------------------------------------- | ------------ |
@@ -245,12 +247,12 @@ SDLC Tasks (ToDos) from [[ToDo Requirements Map]]  per Stage
 _TBD: re-visit_
 _These are **current known risks** and should be revisited whenever Implementation changes_
 
-|Risk|Impact|Mitigation|
-|---|---|---|
-|Fragile selectors|Medium|Use `data-testid` attributes|
-|CI timeout|Low|Use Playwright trace viewer & retries|
-|Allure CLI issues|Medium|Use Dockerized Allure action|
-|Demo app availability|Medium|Mirror sample HTML locally|
+| Risk                  | Impact | Mitigation                            |
+| --------------------- | ------ | ------------------------------------- |
+| Fragile selectors     | Medium | Use `data-testid` attributes          |
+| CI timeout            | Low    | Use Playwright trace viewer & retries |
+| Allure CLI issues     | Medium | Use Dockerized Allure action          |
+| Demo app availability | Medium | Mirror sample HTML locally            |
 
 ## 8. Scope In/Out: What's in/out? #normative 
 _TBD: re-visit_
