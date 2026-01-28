@@ -1,0 +1,18 @@
+{
+    "apiToUiContract": {
+        "200 OK": "Ok",
+        "401 Unauthorized Invalid Creds": "Invalid username or password",
+        "423/403 Forbidden Account Locked": "Your account is locked. Contact support",
+        "403 Forbidden Reset Password": "Reset Password",
+        "400 Bad Request Creds Required": "Username and password required",
+        "403 Forbidden Verify Email": "Please verify your email to continue"
+    },
+    "apiContract": {
+        "/login?login=x&pass=y": "200 OK",
+        "/login?login=x&pass=z": "401 Unauthorized Invalid Creds",
+        "/login?login=xLocked&pass=y": "423/403 Forbidden Account Locked",
+        "/login?login=x&pass=oldpass": "403 Forbidden Reset Password",
+        "/login?login=null&pass=null": "400 Bad Request Creds Required",
+        "/login?login=xUnverified&pass=y": "403 Forbidden Verify Email"
+    }
+}
