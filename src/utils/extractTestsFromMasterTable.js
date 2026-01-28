@@ -1,9 +1,15 @@
 const fs = require('fs').promises;
 const fsmkdir = require('fs').mkdirSync;
 const path = require('path')
+const trace = require("./trace").trace
+const argv = require('yargs/yargs')(process.argv.slice(2)).argv;
 
 const readTestStrategyDoc = async () => {
-    const docPath = path.join(__dirname, '../../docs/Test Strategy.md');
+    trace("Reading test trategy doc ...")
+    trace(argv.insrc);
+    trace(argv.outsrc);
+
+    const docPath = path.join(__dirname, argv.insrc);
 
     try {
         const content = await fs.readFile(docPath, 'utf8');
@@ -14,6 +20,7 @@ const readTestStrategyDoc = async () => {
 }
 
 const getMasterTableFrom_ = (doc) => {
+    trace()
     const regex = /<masterTable>([\s\S]*?)<\\masterTable>/g;
     const matches = [...doc.matchAll(regex)];
     const out = matches[0][1]
@@ -21,6 +28,7 @@ const getMasterTableFrom_ = (doc) => {
 }
 
 const turn_toCsvTable = (mdTable) => {
+    trace()
     const lines = mdTable
         .split('\n')
         .filter(line => line.trim() && !line.startsWith('| ---')); // remove empty lines & separator
@@ -35,16 +43,27 @@ const turn_toCsvTable = (mdTable) => {
     return csvLines.join('\n');
 };
 
-const makeStringsFrom_ = (csvMasterTable) => csvMasterTable.split("\n")
-const getHeaderFrom_ = (csvMasterTableStrings) => csvMasterTableStrings[0]
-const getConstHeadersFrom_ = (header) => header.split(",").slice(0, 4)
+const makeStringsFrom_ = (csvMasterTable) => {
+    trace()
+    return csvMasterTable.split("\n")
+}
+const getHeaderFrom_ = (csvMasterTableStrings) => {
+    trace()
+    return csvMasterTableStrings[0]
+}
 const getUnitTestHeadersFrom = (constHeaders) => {
+    trace()
+    const filteredColumns = (e) => {
+        const filters = argv.f.split(",")
+        return filters.includes(e)
+    }
     return constHeaders
         .split(",")
         .slice(4)
         .map(header => header.replace(" Input", ""))
         .map(header => header.replace(" Output", ""))
         .map(header => header.replaceAll("\"", ""))
+        .filter(e => filteredColumns(e))
         .reduce((acc, cur, i) => {
             if (!acc[cur]) {
                 acc[cur] = [i + 4]
@@ -101,13 +120,13 @@ const makeUnitTestsFrom_using_data = (gherkinTest, unitTestData) => {
 
 async function write_(tests) {
     for (const test in tests) {
-        const testsPath = path.join(__dirname, "../../test/features/login/" + test.replaceAll(" ","_") + "/")
+        const testsPath = path.join(__dirname, argv.outsrc, test.replaceAll(" ", "_") + "/")
         fsmkdir(testsPath, { recursive: true });
         try {
-            await fs.writeFile(testsPath + test.replaceAll(" ","_") + ".unit.feature", tests[test], 'utf8');
-            console.log("File written:", testsPath);
+            await fs.writeFile(testsPath + test.replaceAll(" ", "_") + ".unit.feature", tests[test], 'utf8');
+            trace("File written: " + testsPath);
         } catch (err) {
-            console.error("Write error:", err);
+            trace("Write error:", err);
         }
     }
 }
